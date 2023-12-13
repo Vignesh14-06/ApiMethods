@@ -21,6 +21,8 @@ const UpdateUserDetail = () => {
         yearsOfExp: "",
       });
       const [open, setOpen] = useState(false);
+      const [error, setError] = useState({});
+      const [issubmit, setIsSubmit] = useState(false);
       const [message, setMessage] = useState("");
       const navigate = useNavigate();
       const handleChange = (e) => {
@@ -31,7 +33,7 @@ const UpdateUserDetail = () => {
     useEffect (()=>{
           axios.get(`http://localhost:8001/userDetails/${id}`)
           .then((res)=>setUserData({...userData,userName:res.data.userName,emailId:res.data.emailId,phoneNo:res.data.phoneNo,designation:res.data.designation,yearsOfExp:res.data.yearsOfExp}))
-    })
+    },[])
     
       const apiData = () => {
         axios
@@ -55,12 +57,56 @@ const UpdateUserDetail = () => {
           })
           .catch((err) => console.log(err));
       };
+      const errorValidate = (value) => {
+        const errors = {};
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
+        const yearsRegex = /^[0-9]{1,2}$/i;
+        if (!value.userName) {
+          errors.userName = "UserName Field is Mandatory";
+        } else if (value.userName.length > 21) {
+          errors.userName = "20 Characters are only Allowed";
+        } else if (value.userName.length <= 2) {
+          errors.userName = "UserName is very Short. Please enter your Full Name";
+        }
+        if (!value.emailId) {
+          errors.emailId = "emailId Field is Mandatory";
+        } else if (!emailRegex.test(value.emailId)) {
+          errors.emailId = "Please enter a valid Email";
+        }
+        if (!value.phoneNo) {
+          errors.phoneNo = "PhoneNumber Field is Mandatory";
+        } else if (value.phoneNo.length > 10) {
+          errors.phoneNo = "Please enter a valid Phone Number";
+        } else if (value.phoneNo.length < 10) {
+          errors.phoneNo = "Please enter a valid Phone Number";
+        }
+        if (!value.designation) {
+          errors.designation = "Designation Field is Mandatory";
+        } else if (value.designation.length > 21) {
+          errors.designation = "20 Characters are only Allowed";
+        } else if (value.designation.length <= 2) {
+          errors.designation =
+            "Designation is very Short. Please enter your Full Designation Name";
+        }
+        if (!value.yearsOfExp) {
+          errors.yearsOfExp = "Years Of Experience Field is Mandatory";
+        } else if (!yearsRegex.test(value.yearsOfExp)) {
+          errors.yearsOfExp = "Please enter your valid Work Experience";
+        }
     
-      const submit = (e) => {
-        e.preventDefault();
-        apiData();
+        return errors;
       };
     
+      const submit = (e) => {
+        e.preventDefault()
+        setError(errorValidate(userData));
+        setIsSubmit(true);
+      };
+      useEffect(() => {
+        if (Object.keys(error).length === 0 && issubmit) {
+          apiData();
+        }
+      }, [error]);
       const handleClose = (event, reason) => {
         if (reason === "clickaway") {
           return;
@@ -101,6 +147,16 @@ const UpdateUserDetail = () => {
                       value={userData.userName}
                       onChange={handleChange}
                     />
+                       <p
+                  style={{
+                    fontSize: "18px",
+                    color: "red",
+                    fontWeight: 400,
+                    marginLeft: "40px",
+                  }}
+                >
+                  {error.userName}
+                </p>
                   </Grid>
                   <Grid item xs={4}>
                     <InputField
@@ -110,6 +166,16 @@ const UpdateUserDetail = () => {
                       value={userData.emailId}
                       onChange={handleChange}
                     />
+                       <p
+                  style={{
+                    fontSize: "18px",
+                    color: "red",
+                    fontWeight: 400,
+                    marginLeft: "40px",
+                  }}
+                >
+                  {error.emailId}
+                </p>
                   </Grid>
                   <Grid item xs={4}>
                     <InputField
@@ -119,6 +185,16 @@ const UpdateUserDetail = () => {
                       value={userData.phoneNo}
                       onChange={handleChange}
                     />
+                       <p
+                  style={{
+                    fontSize: "18px",
+                    color: "red",
+                    fontWeight: 400,
+                    marginLeft: "40px",
+                  }}
+                >
+                  {error.phoneNo}
+                </p>
                   </Grid>
                   <Grid item xs={4}>
                     <InputField
@@ -128,6 +204,16 @@ const UpdateUserDetail = () => {
                       value={userData.designation}
                       onChange={handleChange}
                     />
+                       <p
+                  style={{
+                    fontSize: "18px",
+                    color: "red",
+                    fontWeight: 400,
+                    marginLeft: "40px",
+                  }}
+                >
+                  {error.designation}
+                </p>
                   </Grid>
                   <Grid item xs={4}>
                     <InputField
@@ -137,6 +223,16 @@ const UpdateUserDetail = () => {
                       value={userData.yearsOfExp}
                       onChange={handleChange}
                     />
+                       <p
+                  style={{
+                    fontSize: "18px",
+                    color: "red",
+                    fontWeight: 400,
+                    marginLeft: "40px",
+                  }}
+                >
+                  {error.yearsOfExp}
+                </p>
                   </Grid>
                 </Grid>
               </FormControl>

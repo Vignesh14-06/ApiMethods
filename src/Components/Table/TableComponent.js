@@ -8,7 +8,15 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Button from "@mui/material/Button";
 
-const TableComponent = ({ rows, data, viewDetail,page,rowsPerPage,updateDetail,deleteDetail }) => {
+const TableComponent = ({
+  rows,
+  data,
+  viewDetail,
+  page,
+  rowsPerPage,
+  updateDetail,
+  deleteDetail,
+}) => {
   return (
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 650 }} aria-label="simple table">
@@ -22,20 +30,48 @@ const TableComponent = ({ rows, data, viewDetail,page,rowsPerPage,updateDetail,d
           </TableRow>
         </TableHead>
         <TableBody>
-          {data.slice(page * rowsPerPage,page * rowsPerPage + rowsPerPage).map((headCell) => (
-            <TableRow>
-              <TableCell width={headCell.width}>{headCell.userName}</TableCell>
-              <TableCell width={headCell.width}>{headCell.emailId}</TableCell>
-              <TableCell width={headCell.width}>{headCell.phoneNo}</TableCell>
-              <TableCell width={headCell.width}>
-                {headCell.designation}
-              </TableCell>
-              <TableCell width={headCell.width}>
-                {`${headCell.yearsOfExp} yrs`}
-              </TableCell>
-                <TableCell width={headCell.width}><Button variant="contained" style={{fontSize:"9px"}} onClick={()=>{viewDetail(headCell.id)}}>View Detail</Button> <Button style={{fontSize:"9px"}} variant="contained" onClick={()=>updateDetail(headCell.id)}>Update Detail</Button> <Button style={{fontSize:"9px"}} variant="contained" onClick={()=>deleteDetail(headCell.id)}>Delete</Button></TableCell>
-            </TableRow>
-          ))}
+          {data
+            .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+            .map((headCell) => (
+              <TableRow>
+                <TableCell width={headCell.width}>
+                  {headCell.userName}
+                </TableCell>
+                <TableCell width={headCell.width}>{headCell.emailId}</TableCell>
+                <TableCell width={headCell.width}>{headCell.phoneNo}</TableCell>
+                <TableCell width={headCell.width}>
+                  {headCell.designation}
+                </TableCell>
+                <TableCell width={headCell.width}>
+                  {`${headCell.yearsOfExp} yrs`}
+                </TableCell>
+                <TableCell width={headCell.width}>
+                  <Button
+                    variant="contained"
+                    style={{ fontSize: "9px" }}
+                    onClick={() => {
+                      viewDetail(headCell.id);
+                    }}
+                  >
+                    View Detail
+                  </Button>{" "}
+                  <Button
+                    style={{ fontSize: "9px" }}
+                    variant="contained"
+                    onClick={() => updateDetail(headCell.id)}
+                  >
+                    Update Detail
+                  </Button>{" "}
+                  <Button
+                    style={{ fontSize: "9px" }}
+                    variant="contained"
+                    onClick={() => deleteDetail(headCell.id)}
+                  >
+                    Delete
+                  </Button>
+                </TableCell>
+              </TableRow>
+            ))}
         </TableBody>
       </Table>
     </TableContainer>
