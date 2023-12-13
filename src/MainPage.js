@@ -103,7 +103,7 @@ const MainPage = () => {
       numeric: true,
       disablePadding: false,
       label: "YearsOfExp",
-      width: "10%",
+      width: "8%",
     },
     {
       id: "actions",

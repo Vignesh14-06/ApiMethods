@@ -6,6 +6,7 @@ import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
+import Button from "@mui/material/Button";
 
 const TableComponent = ({ rows, data, viewDetail,page,rowsPerPage,updateDetail,deleteDetail }) => {
   return (
@@ -32,7 +33,7 @@ const TableComponent = ({ rows, data, viewDetail,page,rowsPerPage,updateDetail,d
               <TableCell width={headCell.width}>
                 {`${headCell.yearsOfExp} yrs`}
               </TableCell>
-                <TableCell width={headCell.width}><button onClick={()=>{viewDetail(headCell.id)}}>View Detail</button> <button onClick={()=>updateDetail(headCell.id)}>Update Detail</button> <button onClick={()=>deleteDetail(headCell.id)}>Delete</button></TableCell>
+                <TableCell width={headCell.width}><Button variant="contained" style={{fontSize:"9px"}} onClick={()=>{viewDetail(headCell.id)}}>View Detail</Button> <Button style={{fontSize:"9px"}} variant="contained" onClick={()=>updateDetail(headCell.id)}>Update Detail</Button> <Button style={{fontSize:"9px"}} variant="contained" onClick={()=>deleteDetail(headCell.id)}>Delete</Button></TableCell>
             </TableRow>
           ))}
         </TableBody>
