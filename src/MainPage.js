@@ -3,7 +3,6 @@ import "./App.css";
 import Paper from "@mui/material/Paper";
 import Typography from "@mui/material/Typography";
 import TableComponent from "./Components/Table/TableComponent";
-import Pagination from "./Components/Pagination/Pagination";
 import axios from "axios";
 import Button from "@mui/material/Button";
 import { useNavigate } from 'react-router-dom';
@@ -135,13 +134,16 @@ const MainPage = () => {
                       updateDetail={updateDetail}
                       deleteDetail={deleteDetail}
                       page={page}
-                      rowsPerPage={rowsPerPage} /><Pagination
-                          options={[5, 10, 30, 50]}
-                          count={data.length}
+                      rowsPerPage={rowsPerPage}
+                      options={[5, 10, 30, 50]}
+                      count={data.length}
+                      handleChangePage={handleChangePage}
+                      handleChangeRowsPerPage={handleChangeRowsPerPage}
+                      />
+                      {/* <Pagination
                           page={page}
-                          handleChangePage={handleChangePage}
-                          rowsPerPage={rowsPerPage}
-                          handleChangeRowsPerPage={handleChangeRowsPerPage} /></>}
+                          handleChangeRowsPerPage={handleChangeRowsPerPage} /> */}
+                          </>}
       </Paper>
     </>
   );
