@@ -31,7 +31,7 @@ const UpdateUserDetail = () => {
     useEffect (()=>{
           axios.get(`http://localhost:8001/userDetails/${id}`)
           .then((res)=>setUserData({...userData,userName:res.data.userName,emailId:res.data.emailId,phoneNo:res.data.phoneNo,designation:res.data.designation,yearsOfExp:res.data.yearsOfExp}))
-    },[id,userData])
+    })
     
       const apiData = () => {
         axios

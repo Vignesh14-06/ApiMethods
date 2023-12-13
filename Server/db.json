@@ -1,3 +1,20 @@
 {
-  "userDetails": []
+  "userDetails": [
+    {
+      "userName": "vicky",
+      "emailId": "vicky@123",
+      "phoneNo": "1234554321",
+      "designation": "developer",
+      "yearsOfExp": "2",
+      "id": 1
+    },
+    {
+      "userName": "naveen",
+      "emailId": "naveen@gmail.com",
+      "phoneNo": "1234565432",
+      "designation": "developer",
+      "yearsOfExp": "3",
+      "id": 2
+    }
+  ]
 }
