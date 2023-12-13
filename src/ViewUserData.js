@@ -25,7 +25,7 @@ const ViewUserData = () => {
           .then((res)=>setData({...data,userName:res.data.userName,emailId:res.data.emailId,phoneNo:res.data.phoneNo,designation:res.data.designation,yearsOfExp:res.data.yearsOfExp})
           )
           .catch((err) => err);
-      },[id,data]);
+      },[]);
   return (
     <>
       <Paper className="paper">
