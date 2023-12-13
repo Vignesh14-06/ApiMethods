@@ -130,7 +130,7 @@ const Form = () => {
             paddingBottom: "10px",
           }}
         >
-          USER FORM
+          Create User Detail
         </Typography>
         <form onSubmit={submit}>
           <FormControl>
@@ -232,11 +232,18 @@ const Form = () => {
               </Grid>
             </Grid>
           </FormControl>
+          <div style={{display:"flex",flexDirection:"row",gap:"6px",marginLeft:"63%"}}>
           <Grid item xs={8}>
             <Button variant="contained" type="submit" className="btn">
               Submit
             </Button>
           </Grid>
+          <Grid item xs={8}>
+          <Button variant="contained" onClick={()=>navigate("/")} className="btn">
+                  Back
+                </Button>
+              </Grid>
+              </div>
         </form>
       </Paper>
     </>

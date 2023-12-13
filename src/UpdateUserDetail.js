@@ -134,7 +134,7 @@ const UpdateUserDetail = () => {
                 paddingBottom: "10px",
               }}
             >
-              User Upate Form
+               Upate User Detail
             </Typography>
             <form onSubmit={submit}>
               <FormControl>

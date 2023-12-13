@@ -39,7 +39,7 @@ const ViewUserData = () => {
             paddingBottom: "10px",
           }}
         >
-          USER FORM
+          View User Detail
         </Typography>
         <form >
           <FormControl>
